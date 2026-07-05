@@ -7,7 +7,7 @@ import '../styles/auth.css'
 export default function SignUpPage() {
   const navigate = useNavigate()
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [studentId, setStudentId] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const [isPublic, setIsPublic] = useState(false)
@@ -26,7 +26,7 @@ export default function SignUpPage() {
 
     setSubmitting(true)
     try {
-      await signUp({ name, email, password, isPublic, allowAiTraining })
+      await signUp({ name, studentId, password, isPublic, allowAiTraining })
       navigate('/', { replace: true })
     } catch (err) {
       setError(toAuthErrorMessage(err))
@@ -53,14 +53,15 @@ export default function SignUpPage() {
             />
           </div>
           <div className="auth-field">
-            <label htmlFor="email">이메일</label>
+            <label htmlFor="studentId">학번</label>
             <input
-              id="email"
-              type="email"
-              autoComplete="email"
+              id="studentId"
+              type="text"
+              inputMode="numeric"
+              autoComplete="username"
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={studentId}
+              onChange={(e) => setStudentId(e.target.value)}
             />
           </div>
           <div className="auth-field">

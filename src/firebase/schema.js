@@ -20,7 +20,7 @@ export const QUESTION_TYPES = {
 /**
  * @typedef {Object} UserDoc
  * @property {string} name
- * @property {string} email
+ * @property {string} studentId 학번 (로그인 식별자, Firebase Auth에는 내부용 가짜 이메일로 매핑됨)
  * @property {boolean} isPublic
  * @property {boolean} allowAiTraining
  * @property {number} streak
@@ -31,7 +31,7 @@ export const QUESTION_TYPES = {
  * @property {string | null} fcmToken 웹 푸시 발송 대상 FCM 토큰 (알림 미허용 시 null)
  */
 
-/** @returns {Omit<UserDoc, 'name' | 'email' | 'lastSkipTokenGrantAt'>} 회원가입 시 기본값 (동의 항목은 옵트인: 기본 false) */
+/** @returns {Omit<UserDoc, 'name' | 'studentId' | 'lastSkipTokenGrantAt'>} 회원가입 시 기본값 (동의 항목은 옵트인: 기본 false) */
 export function defaultUserDoc() {
   return {
     isPublic: false,

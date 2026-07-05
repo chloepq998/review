@@ -6,7 +6,7 @@ import '../styles/auth.css'
 
 export default function LoginPage() {
   const navigate = useNavigate()
-  const [email, setEmail] = useState('')
+  const [studentId, setStudentId] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -16,7 +16,7 @@ export default function LoginPage() {
     setError('')
     setSubmitting(true)
     try {
-      await logIn({ email, password })
+      await logIn({ studentId, password })
       navigate('/', { replace: true })
     } catch (err) {
       setError(toAuthErrorMessage(err))
@@ -32,14 +32,15 @@ export default function LoginPage() {
         <h1 className="auth-title">로그인</h1>
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="auth-field">
-            <label htmlFor="email">이메일</label>
+            <label htmlFor="studentId">학번</label>
             <input
-              id="email"
-              type="email"
-              autoComplete="email"
+              id="studentId"
+              type="text"
+              inputMode="numeric"
+              autoComplete="username"
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={studentId}
+              onChange={(e) => setStudentId(e.target.value)}
             />
           </div>
           <div className="auth-field">

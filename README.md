@@ -20,6 +20,9 @@
    cp .env.example .env
    ```
 3. Firebase 콘솔에서 Authentication > 이메일/비밀번호 로그인을 활성화한다.
+   (로그인 화면에는 학번만 보이지만, 내부적으로는 `{학번}@student.review-notebook.local` 형태의
+   가짜 이메일로 변환해서 Firebase Auth의 이메일/비밀번호 로그인을 그대로 사용한다.
+   실제 이메일이 없어서 "비밀번호 찾기"는 지원하지 않는다.)
 4. Firebase 콘솔에서 Firestore Database를 생성한다 (프로덕션 모드로 시작해도 무방 — 규칙은 이 저장소의 `firestore.rules`를 배포해서 사용).
 5. Firebase CLI로 규칙/인덱스 배포 (선택, 콘솔에서 직접 붙여넣어도 됨):
    ```

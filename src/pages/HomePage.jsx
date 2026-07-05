@@ -54,7 +54,7 @@ export default function HomePage() {
       <header className="home-header">
         <div>
           <p className="home-tagline">오늘도 한 장</p>
-          <h1>{userDoc?.name ?? user?.email}님의 수첩</h1>
+          <h1>{userDoc?.name ?? userDoc?.studentId ?? '학생'}님의 수첩</h1>
         </div>
         <div className="home-header-right">
           <StreakStamp streak={userDoc?.streak ?? 0} reviewedToday={reviewedToday} />

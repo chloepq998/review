@@ -22,7 +22,7 @@ service cloud.firestore {
         && request.resource.data.isPublic == false
         && request.resource.data.allowAiTraining == false;
       allow update: if isOwner(userId)
-        && request.resource.data.email == resource.data.email;
+        && request.resource.data.studentId == resource.data.studentId;
       allow delete: if isOwner(userId);
     }
 
