@@ -1,25 +1,32 @@
-import { useEffect, useState } from 'react'
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from './firebase/config'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
+import { ProtectedRoute, PublicOnlyRoute } from './components/ProtectedRoute'
+import { isFirebaseConfigured } from './firebase/config'
+import LoginPage from './pages/LoginPage'
+import SignUpPage from './pages/SignUpPage'
+import HomePlaceholder from './pages/HomePlaceholder'
+import FirebaseSetupNotice from './pages/FirebaseSetupNotice'
 
 function App() {
-  const [status, setStatus] = useState('connecting')
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      () => setStatus('connected'),
-      () => setStatus('error'),
-    )
-    return unsubscribe
-  }, [])
+  if (!isFirebaseConfigured) {
+    return <FirebaseSetupNotice />
+  }
 
   return (
-    <main style={{ padding: '2rem' }}>
-      <h1>복습 수첩</h1>
-      <p>Firebase Auth 연결 상태: {status}</p>
-      <p>다음 단계에서 로그인/회원가입 화면이 이 자리에 들어갑니다.</p>
-    </main>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route element={<PublicOnlyRoute />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+          </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<HomePlaceholder />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   )
 }
 
