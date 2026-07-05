@@ -27,6 +27,7 @@ export async function signUp({ name, email, password, isPublic, allowAiTraining 
     isPublic: !!isPublic,
     allowAiTraining: !!allowAiTraining,
     createdAt: serverTimestamp(),
+    lastSkipTokenGrantAt: serverTimestamp(),
   })
 
   return credential.user

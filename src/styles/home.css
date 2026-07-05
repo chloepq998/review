@@ -93,9 +93,28 @@
 }
 
 .home-skip-tokens {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   margin: 0.5rem 0 0;
   font-size: 0.8rem;
   color: var(--ink);
+}
+
+.home-skip-button {
+  padding: 0.25rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--coil-red);
+  background: #fff;
+  border: 1.5px solid var(--coil-red);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.home-skip-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .home-add-note-link {

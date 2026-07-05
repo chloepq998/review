@@ -26,10 +26,11 @@ export const QUESTION_TYPES = {
  * @property {number} streak
  * @property {import('firebase/firestore').Timestamp | null} lastReviewDate
  * @property {number} skipTokens
+ * @property {import('firebase/firestore').Timestamp | null} lastSkipTokenGrantAt
  * @property {number} notificationHour  // 0-23, 기본 20시
  */
 
-/** @returns {Omit<UserDoc, 'name' | 'email'>} 회원가입 시 기본값 (동의 항목은 옵트인: 기본 false) */
+/** @returns {Omit<UserDoc, 'name' | 'email' | 'lastSkipTokenGrantAt'>} 회원가입 시 기본값 (동의 항목은 옵트인: 기본 false) */
 export function defaultUserDoc() {
   return {
     isPublic: false,
@@ -62,6 +63,7 @@ export function defaultUserDoc() {
  * @property {string} correctAnswer
  * @property {boolean} isFlagged
  * @property {boolean} isActive
+ * @property {boolean} needsReview AI 2단계 검증에 최종 실패해 사람 검토가 필요한 문제인지
  */
 
 /**

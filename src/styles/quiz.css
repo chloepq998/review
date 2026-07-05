@@ -1,0 +1,106 @@
+.quiz-page {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 2rem 1.5rem 2.5rem 2.25rem;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--paper-bg) 0px,
+    var(--paper-bg) 31px,
+    var(--paper-line) 32px
+  );
+  border-left: 2px solid var(--margin-line);
+}
+
+.quiz-progress {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 1rem;
+}
+
+.quiz-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(43, 58, 85, 0.12);
+}
+
+.quiz-question-text {
+  margin: 0.9rem 0 1.25rem;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.quiz-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.quiz-choices-ox {
+  flex-direction: row;
+}
+
+.quiz-choice {
+  padding: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  text-align: center;
+  color: var(--ink);
+  background: var(--paper-bg);
+  border: 1.5px solid var(--paper-line);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.quiz-choices-ox .quiz-choice {
+  flex: 1;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.quiz-choice:disabled {
+  cursor: default;
+}
+
+.quiz-choice.is-correct {
+  border-color: var(--tab-science, #b6d9ae);
+  background: var(--tab-science, #b6d9ae);
+}
+
+.quiz-choice.is-wrong {
+  border-color: var(--coil-red);
+  background: #fbdedb;
+}
+
+.quiz-next-button {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  background: var(--ink);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.quiz-finished {
+  text-align: center;
+}
+
+.quiz-home-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--ink);
+  border: none;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+}
