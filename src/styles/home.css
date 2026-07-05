@@ -98,6 +98,15 @@
   color: var(--ink);
 }
 
+.home-add-note-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--coil-red);
+  text-decoration: none;
+}
+
 .home-list {
   margin-top: 1.75rem;
 }

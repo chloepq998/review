@@ -32,6 +32,15 @@
    npm run dev
    ```
 
+## AI 문제 생성 (`/api/generate-questions`)
+
+문제 생성은 Claude API 키를 클라이언트에 노출하지 않기 위해 Vercel 서버리스 함수(`api/generate-questions.js`)에서 처리한다.
+
+- `npm run dev`(Vite 개발 서버)만으로는 `/api` 라우트가 동작하지 않는다. 로컬에서 AI 문제 생성까지 테스트하려면 [Vercel CLI](https://vercel.com/docs/cli)로 `vercel dev`를 실행해야 한다.
+- `.env`에 `ANTHROPIC_API_KEY`를 채워야 한다 (Vercel 배포 시에는 Vercel 프로젝트 환경변수로 등록).
+- 생성 로직: 구조화된 출력(tool use)으로 문제를 강제 생성 → 코드 레벨 규칙 필터(오답 중복/보기 길이 편차 체크) → 같은 API로 2차 검증 → 실패 시 최대 2회 재생성, 그래도 실패하면 `needsHumanReview` 플래그를 달아 저장.
+- 필기 1개당 문제는 최대 5개까지만 생성되며, 같은 노트로 재요청 시 Firestore에 캐싱된 문제를 재사용한다.
+
 ## Firestore 데이터 모델
 
 `src/firebase/schema.js` 참고. 컬렉션: `users`, `notes`, `questions`, `reviewSchedule`.

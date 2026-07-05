@@ -5,6 +5,7 @@ import { isFirebaseConfigured } from './firebase/config'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
 import HomePage from './pages/HomePage'
+import NoteInputPage from './pages/NoteInputPage'
 import ReviewPlaceholder from './pages/ReviewPlaceholder'
 import FirebaseSetupNotice from './pages/FirebaseSetupNotice'
 
@@ -23,6 +24,7 @@ function App() {
           </Route>
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/notes/new" element={<NoteInputPage />} />
             <Route path="/review" element={<ReviewPlaceholder />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />

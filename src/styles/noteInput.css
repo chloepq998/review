@@ -1,0 +1,99 @@
+.note-input-page {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 2rem 1.5rem 2.5rem 2.25rem;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--paper-bg) 0px,
+    var(--paper-bg) 31px,
+    var(--paper-line) 32px
+  );
+  border-left: 2px solid var(--margin-line);
+}
+
+.note-input-page h1 {
+  margin: 0 0 1.5rem;
+  font-size: 1.3rem;
+}
+
+.note-input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.note-input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.note-input-field label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.note-input-field select,
+.note-input-field input[type='text'],
+.note-input-field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--paper-line);
+  border-radius: 6px;
+  padding: 0.55rem 0.7rem;
+  outline: none;
+}
+
+.note-input-field select:focus,
+.note-input-field input[type='text']:focus,
+.note-input-field textarea:focus {
+  border-color: var(--coil-red);
+}
+
+.note-input-field textarea {
+  min-height: 180px;
+  resize: vertical;
+  font-family: var(--font-body);
+}
+
+.note-input-charcount {
+  align-self: flex-end;
+  font-size: 0.75rem;
+  color: var(--ink);
+  opacity: 0.6;
+}
+
+.note-input-error {
+  color: var(--coil-red);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.note-input-submit {
+  margin-top: 0.25rem;
+  padding: 0.75rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  background: var(--ink);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.note-input-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.note-input-back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: var(--ink);
+  text-decoration: underline;
+}

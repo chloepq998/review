@@ -34,6 +34,9 @@ export default function HomePage() {
       <section className="home-progress">
         <ProgressBar completed={completed} total={total} />
         <p className="home-skip-tokens">스킵권 {userDoc?.skipTokens ?? 0}개 보유</p>
+        <Link className="home-add-note-link" to="/notes/new">
+          + 새 필기 입력
+        </Link>
       </section>
 
       <section className="home-list">
@@ -43,6 +46,9 @@ export default function HomePage() {
           <div className="home-empty">
             <p>오늘 복습할 문제가 아직 없어요.</p>
             <p>필기를 입력하고 문제를 만들어보세요.</p>
+            <Link className="home-start-button" to="/notes/new">
+              필기 입력하러 가기
+            </Link>
           </div>
         )}
 
