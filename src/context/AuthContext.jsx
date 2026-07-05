@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { onAuthStateChanged } from 'firebase/auth'
-import { doc, onSnapshot } from 'firebase/firestore'
+import { onAuthStateChanged, signInAnonymously } from 'firebase/auth'
+import { doc, onSnapshot, setDoc, serverTimestamp } from 'firebase/firestore'
 import { auth, db } from '../firebase/config'
-import { COLLECTIONS } from '../firebase/schema'
+import { COLLECTIONS, defaultUserDoc } from '../firebase/schema'
+import { AUTO_ANONYMOUS_LOGIN } from '../config/authMode'
 
 const AuthContext = createContext(null)
 
@@ -15,6 +16,9 @@ export function AuthProvider({ children }) {
     const unsubscribeAuth = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser)
       setLoading(false)
+      if (!firebaseUser && AUTO_ANONYMOUS_LOGIN) {
+        signInAnonymously(auth).catch(() => {})
+      }
     })
     return unsubscribeAuth
   }, [])
@@ -22,11 +26,26 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (!user) {
       setUserDoc(null)
-      return
+      return undefined
     }
+    const ref = doc(db, COLLECTIONS.USERS, user.uid)
     const unsubscribeDoc = onSnapshot(
-      doc(db, COLLECTIONS.USERS, user.uid),
-      (snapshot) => setUserDoc(snapshot.exists() ? snapshot.data() : null),
+      ref,
+      (snapshot) => {
+        if (snapshot.exists()) {
+          setUserDoc(snapshot.data())
+        } else if (user.isAnonymous) {
+          setDoc(ref, {
+            ...defaultUserDoc(),
+            name: '게스트',
+            studentId: null,
+            createdAt: serverTimestamp(),
+            lastSkipTokenGrantAt: serverTimestamp(),
+          }).catch(() => {})
+        } else {
+          setUserDoc(null)
+        }
+      },
       () => setUserDoc(null),
     )
     return unsubscribeDoc
