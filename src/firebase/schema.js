@@ -8,6 +8,8 @@ export const COLLECTIONS = {
   REVIEW_SCHEDULE: 'reviewSchedule',
 }
 
+// 기본 제공 과목 목록 (초기 4과목). subject 필드는 고정 enum이 아니라 자유 문자열이라
+// 사용자가 이 외의 과목을 추가로 입력해도 그대로 저장/조회된다 (색상은 subjectColors.js에서 처리).
 export const SUBJECTS = ['국어', '수학', '영어', '과학']
 
 export const QUESTION_TYPES = {

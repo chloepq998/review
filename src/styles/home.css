@@ -1,0 +1,166 @@
+.home-page {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 2rem 1.5rem 2.5rem 2.25rem;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--paper-bg) 0px,
+    var(--paper-bg) 31px,
+    var(--paper-line) 32px
+  );
+  border-left: 2px solid var(--margin-line);
+}
+
+.home-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.home-tagline {
+  font-family: var(--font-accent);
+  font-size: 1.4rem;
+  color: var(--coil-red);
+  margin: 0;
+}
+
+.home-header h1 {
+  margin: 0.1rem 0 0;
+  font-size: 1.25rem;
+}
+
+.streak-stamp {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid var(--paper-line);
+  color: var(--paper-line);
+  transform: rotate(-8deg);
+}
+
+.streak-stamp.is-stamped {
+  border-color: var(--coil-red);
+  color: var(--coil-red);
+}
+
+.streak-stamp-number {
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.streak-stamp-label {
+  font-size: 0.7rem;
+}
+
+.home-progress {
+  margin-top: 1.75rem;
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.progress-bar-track {
+  flex: 1;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--paper-line);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--ink);
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.progress-bar-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.home-skip-tokens {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ink);
+}
+
+.home-list {
+  margin-top: 1.75rem;
+}
+
+.home-empty {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+}
+
+.home-review-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.home-review-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fff;
+  padding: 0.6rem 0.8rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(43, 58, 85, 0.1);
+}
+
+.subject-tab {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.home-review-concept {
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.home-start-button {
+  display: block;
+  margin-top: 1.75rem;
+  padding: 0.8rem;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 999px;
+}
+
+.home-logout {
+  display: block;
+  margin: 1.5rem auto 0;
+  background: none;
+  border: none;
+  color: var(--ink);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.85rem;
+}

@@ -24,9 +24,11 @@ export function AuthProvider({ children }) {
       setUserDoc(null)
       return
     }
-    const unsubscribeDoc = onSnapshot(doc(db, COLLECTIONS.USERS, user.uid), (snapshot) => {
-      setUserDoc(snapshot.exists() ? snapshot.data() : null)
-    })
+    const unsubscribeDoc = onSnapshot(
+      doc(db, COLLECTIONS.USERS, user.uid),
+      (snapshot) => setUserDoc(snapshot.exists() ? snapshot.data() : null),
+      () => setUserDoc(null),
+    )
     return unsubscribeDoc
   }, [user])
 

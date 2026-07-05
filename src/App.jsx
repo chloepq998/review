@@ -4,7 +4,8 @@ import { ProtectedRoute, PublicOnlyRoute } from './components/ProtectedRoute'
 import { isFirebaseConfigured } from './firebase/config'
 import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SignUpPage'
-import HomePlaceholder from './pages/HomePlaceholder'
+import HomePage from './pages/HomePage'
+import ReviewPlaceholder from './pages/ReviewPlaceholder'
 import FirebaseSetupNotice from './pages/FirebaseSetupNotice'
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
             <Route path="/signup" element={<SignUpPage />} />
           </Route>
           <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<HomePlaceholder />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/review" element={<ReviewPlaceholder />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
