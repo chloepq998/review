@@ -56,7 +56,12 @@ export default function HomePage() {
           <p className="home-tagline">오늘도 한 장</p>
           <h1>{userDoc?.name ?? user?.email}님의 수첩</h1>
         </div>
-        <StreakStamp streak={userDoc?.streak ?? 0} reviewedToday={reviewedToday} />
+        <div className="home-header-right">
+          <StreakStamp streak={userDoc?.streak ?? 0} reviewedToday={reviewedToday} />
+          <Link className="home-settings-link" to="/settings">
+            마이페이지
+          </Link>
+        </div>
       </header>
 
       <section className="home-progress">

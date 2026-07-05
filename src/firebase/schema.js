@@ -28,6 +28,7 @@ export const QUESTION_TYPES = {
  * @property {number} skipTokens
  * @property {import('firebase/firestore').Timestamp | null} lastSkipTokenGrantAt
  * @property {number} notificationHour  // 0-23, 기본 20시
+ * @property {string | null} fcmToken 웹 푸시 발송 대상 FCM 토큰 (알림 미허용 시 null)
  */
 
 /** @returns {Omit<UserDoc, 'name' | 'email' | 'lastSkipTokenGrantAt'>} 회원가입 시 기본값 (동의 항목은 옵트인: 기본 false) */

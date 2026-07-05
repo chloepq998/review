@@ -41,6 +41,19 @@
 - 생성 로직: 구조화된 출력(tool use)으로 문제를 강제 생성 → 코드 레벨 규칙 필터(오답 중복/보기 길이 편차 체크) → 같은 API로 2차 검증 → 실패 시 최대 2회 재생성, 그래도 실패하면 `needsHumanReview` 플래그를 달아 저장.
 - 필기 1개당 문제는 최대 5개까지만 생성되며, 같은 노트로 재요청 시 Firestore에 캐싱된 문제를 재사용한다.
 
+## 웹 푸시 리마인더 (`/api/send-reminders`)
+
+오늘 복습을 하지 않은 사용자에게 하루 1회(20:00 KST, `vercel.json`의 `crons` 설정) 웹 푸시를 보낸다.
+사용자별 알림 시간(`notificationHour`)은 마이페이지에서 설정할 수 있지만, 발송 자체는 스코프를 단순화해
+고정 시간에만 이루어진다 (세분화는 다음 단계 과제).
+
+설정 방법:
+1. Firebase 콘솔 > 프로젝트 설정 > 서비스 계정 > "새 비공개 키 생성"으로 JSON 키를 받는다.
+2. 그 JSON 파일 내용을 한 줄 문자열로 `FIREBASE_SERVICE_ACCOUNT` 환경변수에 설정한다.
+3. Firebase 콘솔 > 프로젝트 설정 > 클라우드 메시징 탭 > 웹 구성에서 VAPID 키를 발급받아 `VITE_FIREBASE_VAPID_KEY`에 설정한다.
+4. (선택) `CRON_SECRET`을 임의의 값으로 설정하면 `/api/send-reminders`가 Vercel Cron 호출만 허용한다.
+5. Vercel Cron은 Vercel에 배포된 프로젝트에서만 동작한다 — 로컬에서는 `curl localhost:3000/api/send-reminders`로 직접 호출해 테스트한다 (`vercel dev` 필요).
+
 ## Firestore 데이터 모델
 
 `src/firebase/schema.js` 참고. 컬렉션: `users`, `notes`, `questions`, `reviewSchedule`.

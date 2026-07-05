@@ -31,6 +31,19 @@
   font-size: 1.25rem;
 }
 
+.home-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.home-settings-link {
+  font-size: 0.75rem;
+  color: var(--ink);
+  text-decoration: underline;
+}
+
 .streak-stamp {
   flex-shrink: 0;
   display: flex;

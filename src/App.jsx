@@ -7,6 +7,7 @@ import SignUpPage from './pages/SignUpPage'
 import HomePage from './pages/HomePage'
 import NoteInputPage from './pages/NoteInputPage'
 import QuizPage from './pages/QuizPage'
+import SettingsPage from './pages/SettingsPage'
 import FirebaseSetupNotice from './pages/FirebaseSetupNotice'
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/notes/new" element={<NoteInputPage />} />
             <Route path="/review" element={<QuizPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
