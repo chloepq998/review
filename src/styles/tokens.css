@@ -1,0 +1,26 @@
+:root {
+  --paper-bg: #ffffff;
+  --paper-line: #e6ecf5;
+  --margin-line: #f0b8b2;
+  --coil-red: #c23b2f;
+  --ink: #2b3a55;
+
+  --tab-korean: #f2a6a0;
+  --tab-math: #a8c8e8;
+  --tab-english: #f5d98a;
+  --tab-science: #b6d9ae;
+
+  --font-body: 'Noto Sans KR', sans-serif;
+  --font-accent: 'Nanum Pen Script', cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper-bg);
+}

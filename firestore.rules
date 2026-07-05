@@ -1,0 +1,52 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function userIsPublic(userId) {
+      return exists(/databases/$(database)/documents/users/$(userId)) &&
+        get(/databases/$(database)/documents/users/$(userId)).data.isPublic == true;
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId) || resource.data.isPublic == true;
+      allow create: if isOwner(userId)
+        && request.resource.data.isPublic == false
+        && request.resource.data.allowAiTraining == false;
+      allow update: if isOwner(userId)
+        && request.resource.data.email == resource.data.email;
+      allow delete: if isOwner(userId);
+    }
+
+    match /notes/{noteId} {
+      allow read: if isSignedIn() &&
+        (resource.data.userId == request.auth.uid || userIsPublic(resource.data.userId));
+      allow create: if isOwner(request.resource.data.userId);
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+
+    match /questions/{questionId} {
+      allow read: if isSignedIn() &&
+        (resource.data.userId == request.auth.uid || userIsPublic(resource.data.userId));
+      allow create: if isOwner(request.resource.data.userId);
+      // 문제 신고(isFlagged)는 소유자가 아니어도 할 수 있게 허용하되, 그 외 필드는 소유자만 수정 가능
+      allow update: if isOwner(resource.data.userId) ||
+        (isSignedIn() &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isFlagged']));
+      allow delete: if isOwner(resource.data.userId);
+    }
+
+    match /reviewSchedule/{scheduleId} {
+      allow read, write: if isOwner(request.resource.data.userId) ||
+        (resource != null && isOwner(resource.data.userId));
+    }
+  }
+}
